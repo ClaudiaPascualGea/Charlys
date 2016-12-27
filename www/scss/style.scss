@@ -1,0 +1,45 @@
+@import "config/functions";
+@import "config/variables";
+@import "modules/dashboard";
+@import "modules/game";
+
+/* Empty. Add your own CSS if you like */
+.padding{
+	padding-top: 40px;
+}
+.icon.new-item {
+	position: absolute;
+	right: 20px;
+	font-size: 20px;
+	bottom: 13px;
+}
+.cancel-create {
+	position: absolute;
+	right: 10px;
+	top: -40px;
+	font-size: 16px;
+	text-transform: uppercase;
+	color: #bc421c;
+}
+[ng-click], [data-ng-click], [x-ng-click] {
+    cursor: pointer;
+}
+/* Ionic Overwrite! */
+.item-icon-left .icon, .item-icon-right .icon {
+	font-size: 22px;
+} 	
+
+.button-purple{
+	background-color: $purple;
+	border: 0;
+	color: #FFF;
+	text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 1px;
+
+	&:hover, &.activated{
+		color: #FFF;
+		background-color: $purple_dark;
+	}
+}

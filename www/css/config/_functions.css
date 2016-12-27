@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/* FLEXBOX */
+/* Icono del menu del movil */
+/*
+ * $color1 y $color2 en hex
+ * $break número con %
+ * $endColorstr es el fallback en IE 
+ */
+/*@function percent($a, $b) {
+  @return percentage($a / $b);
+}*/

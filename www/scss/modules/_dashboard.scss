@@ -1,0 +1,100 @@
+.dashboard-view{
+	background: $orange;
+	color: #FFF;
+
+	.main-img{
+		width: 40%;
+	    display: block;
+	    margin: 0 auto;
+	    margin-top: 20px;
+	}
+
+	.bar, .bar-subheader{
+		border: 0;
+		background: transparent;
+	}
+
+	.title{
+		text-align: center;
+	    text-transform: uppercase;
+	    color: #FFF;
+	    font-weight: 300;
+	}
+
+	.top-bar{
+		display: block;
+		position: relative;
+		text-align: right;
+
+		.icon.new-item{
+			position: relative;
+			right: auto;
+			bottom: auto;
+		}
+	}
+
+	.addPlayer{
+		margin-top: 10px;
+		font-weight: 300;
+
+		i:before{
+			margin-right: 5px;
+		}
+	}
+
+	.warning{
+		text-align: center;
+	    font-size: 18px;
+	    font-weight: 300;
+	    margin: 20px 0;
+	}
+
+	.card{
+		box-shadow: none;
+		i{
+			color: $orange;
+		}
+		h2{
+			color: $orange;
+			font-size: 18px;
+			text-transform: uppercase;
+		}
+	}
+
+	.button-purple{
+		margin-top: 15px;
+	}
+
+	//New Player
+	.creating-content{
+
+		.title{
+			color: #FFF;
+		    font-size: 24px;
+		    text-transform: uppercase;
+		    text-align: center;
+    		margin-top: 50px;
+		}
+
+		label{
+			border: 0;
+			padding: 0;
+			span{
+				color: #FFF;
+				margin-bottom: 10px;
+			}
+			input{
+				padding: 20px 10px;
+			}
+		}
+
+		.button{
+			background-color: $teal;
+			border: 0;
+			font-size: 18px;
+		    text-transform: uppercase;
+		    letter-spacing: 1px;
+		    font-weight: 300;
+		}
+	}
+}
