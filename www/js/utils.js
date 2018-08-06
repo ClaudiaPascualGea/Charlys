@@ -2,6 +2,10 @@ function saveLocal(key, data) {
 	localStorage[key] = JSON.stringify(data);
 }
 
+function getBaseUrl() {
+	return 'http://charlys.claudiapascualgea.com';
+}
+
 function getJSONLocal(key) {
 
 	var result = null;

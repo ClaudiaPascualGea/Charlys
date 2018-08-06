@@ -19,6 +19,7 @@ controllers.DashboardCtrl = function (PlayersModel, $rootScope, $ionicViewSwitch
         object.hash = getJSONLocal("userHash");
         PlayersModel.create(object)
             .then(function (result) {
+                console.log(result);
                 cancelCreate();
                 getAll();
             });
@@ -85,7 +86,7 @@ controllers.DashboardCtrl = function (PlayersModel, $rootScope, $ionicViewSwitch
 
     $rootScope.$on('authorized', function () {
         vm.isAuthorized = true;
-        getAll();
+        //getAll();
     });
 
     $rootScope.$on('logout', function () {
@@ -99,7 +100,7 @@ controllers.DashboardCtrl = function (PlayersModel, $rootScope, $ionicViewSwitch
     initCreateForm();
     getAll();
 
-}
+};
 
 
 

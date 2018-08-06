@@ -1,4 +1,4 @@
-controllers.GameCtrl = function (PlayersModel, $rootScope, CardsModel, ColorsModel, $scope, $ionicPopup) {
+controllers.GameCtrl = function (PlayersModel, CardsModel, ColorsModel, $rootScope, $scope, $ionicPopup) {
 
     var vm = this;
 
@@ -47,9 +47,9 @@ controllers.GameCtrl = function (PlayersModel, $rootScope, CardsModel, ColorsMod
 
     function getFirstCard(){
         CardsModel.getFirstCard()
-        .then(function (result) {               
+        .then(function (result) {
             if(result.data.length > 0){
-                vm.card = result.data[0];                
+                vm.card = result.data[0];
                 if(vm.card.text.indexOf("<player>") != -1)
                     getRandomPlayer();
                 else{
@@ -85,7 +85,7 @@ controllers.GameCtrl = function (PlayersModel, $rootScope, CardsModel, ColorsMod
 
     function getRandomPlayer(){
         PlayersModel.getRandomPlayer()
-        .then(function (result) {            
+        .then(function (result) {
             if(result.data.length > 0){
                 var find = '<player>';
                 var re = new RegExp(find, 'g');
