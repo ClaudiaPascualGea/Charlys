@@ -14,7 +14,7 @@
 		font-size: 25px;
 		position: absolute;
 		top: 40px;
-    	right: 20px;
+    right: 20px;
 	}
 
 	.card-container{
@@ -22,20 +22,20 @@
 		@include flex-align(center);
 		@include flex-direction(column);
 		@include flex-justify(center);
-		
+
 		.title{
 			font-family: 'Patrick Hand', cursive;
 			color: #FFF;
-   			font-size: 40px;
+      font-size: 40px;
 		}
 
 		.text{
 			color: #FFF;
-		    text-align: center;
-		    font-size: 25px;
-		    line-height: 30px;
-		    font-weight: 300;
-		    padding: 20px;
+      text-align: center;
+      font-size: 25px;
+      line-height: 30px;
+      font-weight: 300;
+      padding: 20px;
 		}
 	}
 }

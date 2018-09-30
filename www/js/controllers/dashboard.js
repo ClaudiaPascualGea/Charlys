@@ -19,14 +19,20 @@ controllers.DashboardCtrl = function (PlayersModel, $rootScope, $ionicViewSwitch
         object.hash = getJSONLocal("userHash");
         PlayersModel.create(object)
             .then(function (result) {
+                if (result.data.error) {
+                  alert(result.data.message);
+                }
                 cancelCreate();
                 getAll();
+            }, function(reason) {
+              alert(reason);
             });
     }
 
     function update(object) {
         PlayersModel.update(object.id, object)
             .then(function (result) {
+                console.log(result);
                 cancelEditing();
                 getAll();
             });
@@ -35,8 +41,11 @@ controllers.DashboardCtrl = function (PlayersModel, $rootScope, $ionicViewSwitch
     function deleteObject(id) {
         PlayersModel.delete(id)
             .then(function (result) {
-                cancelEditing();
-                getAll();
+              if (result.data.error) {
+                alert(result.data.message);
+              }
+              cancelEditing();
+              getAll();
             });
     }
 
@@ -85,7 +94,7 @@ controllers.DashboardCtrl = function (PlayersModel, $rootScope, $ionicViewSwitch
 
     $rootScope.$on('authorized', function () {
         vm.isAuthorized = true;
-        getAll();
+        //getAll();
     });
 
     $rootScope.$on('logout', function () {
@@ -99,7 +108,7 @@ controllers.DashboardCtrl = function (PlayersModel, $rootScope, $ionicViewSwitch
     initCreateForm();
     getAll();
 
-}
+};
 
 
 

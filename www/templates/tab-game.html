@@ -6,7 +6,7 @@
 			<i class="ion-close-round close" ng-click="vm.goBack()"></i>
 			
 			<h2 class="title" ng-if="vm.cardTitle != ''">{{vm.cardTitle}}</h2>
-			<p class="text">{{vm.cardText}}</p>
+			<p class="text" ng-if="vm.cardTitle != ''">{{vm.cardText}}</p>
 		</div>
 
     </ion-content>

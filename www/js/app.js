@@ -4,7 +4,7 @@ var directives = {};
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'SimpleRESTIonic' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.services'])
+angular.module('SimpleRESTIonic', ['ionic', 'SimpleRESTIonic.services'])
     .controller(controllers)
     .directive(directives)
     .run(function ($ionicPlatform) {
@@ -26,22 +26,28 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.services
                 return result;
             }
 
-            if(window.device){
-                var hash = window.device.uuid;
-                console.log(hash);
-                saveLocal("userHash", hash); 
-            }else{
-                //var hash = new Date().getTime() + randomString(20, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-                var hash = "111";
-                saveLocal("userHash", hash); 
+            var hash = '111';
+
+            if (ionic.Platform.device()) {
+              hash = ionic.Platform.device().uuid;
+            } else if (device) {
+              hash = device.uuid;
+            } else if (window.device) {
+              hash = window.device.uuid;
             }
+
+            if (hash == undefined) {
+              hash = '111';
+            }
+
+            saveLocal("userHash", hash);
         });
     })
-    .config(function (BackandProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
-        BackandProvider.setAppName('charlys'); // change here to your app name
-        BackandProvider.setSignUpToken('3ff1d063-624a-444e-8b45-dcf5e0770857'); //token that enable sign up. see http://docs.backand.com/en/latest/apidocs/security/index.html#sign-up
-        BackandProvider.setAnonymousToken('e9ecdff3-c007-485f-b295-35c5fa122caf'); // token is for anonymous login. see http://docs.backand.com/en/latest/apidocs/security/index.html#anonymous-access
+        // BackandProvider.setAppName('charlys'); // change here to your app name
+        // BackandProvider.setSignUpToken('3ff1d063-624a-444e-8b45-dcf5e0770857'); //token that enable sign up. see http://docs.backand.com/en/latest/apidocs/security/index.html#sign-up
+        // BackandProvider.setAnonymousToken('e9ecdff3-c007-485f-b295-35c5fa122caf'); // token is for anonymous login. see http://docs.backand.com/en/latest/apidocs/security/index.html#anonymous-access
 
         $stateProvider
             // setup an abstract state for the tabs directive
@@ -85,7 +91,7 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.services
         $httpProvider.interceptors.push('APIInterceptor');
     })
 
-    .run(function ($rootScope, $state, LoginService, Backand) {
+    .run(function ($rootScope, $state) {
 
         $rootScope.hideTabs = true;
 
@@ -94,9 +100,9 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.services
             $state.go('tab.login');
         }
 
-        function signout() {
-            LoginService.signout();
-        }
+        // function signout() {
+        //     LoginService.signout();
+        // }
 
         $rootScope.go = function (state, params) {
             $state.go(state, params);
@@ -106,14 +112,14 @@ angular.module('SimpleRESTIonic', ['ionic', 'backand', 'SimpleRESTIonic.services
             unauthorized();
         });
 
-        $rootScope.$on('$stateChangeSuccess', function (event, toState) {
-            if (toState.name == 'tab.login') {
-                signout();
-            }
-            else if (toState.name != 'tab.login' && Backand.getToken() === undefined) {
-                unauthorized();
-            }
-        });
+        // $rootScope.$on('$stateChangeSuccess', function (event, toState) {
+        //     if (toState.name == 'tab.login') {
+        //         signout();
+        //     }
+        //     else if (toState.name != 'tab.login' && Backand.getToken() === undefined) {
+        //         unauthorized();
+        //     }
+        // });
 
     })
 

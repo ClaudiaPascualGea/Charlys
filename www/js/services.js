@@ -11,13 +11,15 @@ angular.module('SimpleRESTIonic.services', [])
         };
     })
 
-    .service('PlayersModel', function ($http, Backand) {
+
+
+    .service('PlayersModel', function ($http) {
         var service = this,
-            baseUrl = '/1/objects/',
-            objectName = 'players/';
+            baseUrl = getBaseUrl(),
+            objectName = '/player/';
 
         function getUrl() {
-            return Backand.getApiUrl() + baseUrl + objectName;
+            return baseUrl + objectName;
         }
 
         function getUrlForId(id) {
@@ -25,31 +27,41 @@ angular.module('SimpleRESTIonic.services', [])
         }
 
         service.allU = function(){
-
-            var prueba = $http ({
-                  method: 'GET',
-                  url: Backand.getApiUrl() + '/1/query/data/getPlayersWithHash',
-                  params: {
+            return $http ({
+                method: 'GET',
+                url: baseUrl +  objectName + 'getPlayersWithHash/',
+                params: {
                     parameters: {
-                      input1: getJSONLocal("userHash")
+                        hash: getJSONLocal("userHash")
                     }
-                  }
-                });
-
-            return prueba;
-        }
+                }
+            });
+        };
 
         service.getRandomPlayer = function(){
             return $http ({
               method: 'GET',
-              url: Backand.getApiUrl() + '/1/query/data/getRandomPlayer',
+              url: baseUrl +  objectName + 'getRandomPlayer/',
               params: {
                 parameters: {
                    hash: getJSONLocal("userHash")
                 }
               }
             });
-        }
+        };
+
+        service.getSecondRandomPlayer = function(player){
+            return $http ({
+                method: 'GET',
+                url: baseUrl +  objectName + 'getRandomPlayer/',
+                params: {
+                    parameters: {
+                        hash: getJSONLocal("userHash"),
+                        player: player
+                    }
+                }
+            });
+        };
 
         service.all = function () {
             return $http.get(getUrl());
@@ -60,27 +72,58 @@ angular.module('SimpleRESTIonic.services', [])
         };
 
         service.create = function (object) {
-            return $http.post(getUrl(), object);
+            console.log(object);
+            // return $http.post(baseUrl +  objectName + 'create.php', object);
+            return $http ({
+              method: 'GET',
+              url: baseUrl +  objectName + 'create/',
+              params: {
+                  parameters: {
+                      hash: object.hash,
+                      name: object.name
+                  }
+              }
+          });
         };
 
         service.update = function (id, object) {
-            return $http.put(getUrlForId(id), object);
+            // return $http.put(getUrlForId(id), object);
+            console.log(object);
+            return $http ({
+              method: 'GET',
+              url: baseUrl +  objectName + 'update/',
+              params: {
+                  parameters: {
+                      id: id,
+                      name: object.name
+                  }
+              }
+          });
         };
 
         service.delete = function (id) {
-            return $http.delete(getUrlForId(id));
+            // return $http.post(baseUrl +  objectName + 'delete.php', {'id': id});
+            return $http ({
+              method: 'GET',
+              url: baseUrl +  objectName + 'delete/',
+              params: {
+                  parameters: {
+                      id: id
+                  }
+              }
+          });
         };
-
 
     })
 
-    .service('CardsModel', function ($http, Backand) {
+
+    .service('CardsModel', function ($http) {
         var service = this,
-            baseUrl = '/1/objects/',
-            objectName = 'cards/';
+            baseUrl = getBaseUrl(),
+            objectName = '/card/';
 
         function getUrl() {
-            return Backand.getApiUrl() + baseUrl + objectName;
+            return baseUrl + objectName;
         }
 
         function getUrlForId(id) {
@@ -89,23 +132,21 @@ angular.module('SimpleRESTIonic.services', [])
 
         service.getCard = function(cards){
 
-            var prueba = $http ({
-                          method: 'GET',
-                          url: Backand.getApiUrl() + '/1/query/data/getRandomCard',
-                          params: {
-                            parameters: {
-                              ids: cards
-                            }
-                          }
-                        });
-
-            return prueba;
-        }
+            return $http ({
+              method: 'GET',
+              url: baseUrl +  objectName + 'getRandomCard/',
+              params: {
+                parameters: {
+                  ids: cards
+                }
+              }
+            });
+        };
 
         service.getFirstCard = function(){
             return $http ({
               method: 'GET',
-              url: Backand.getApiUrl() + '/1/query/data/getFisrtRandomCard',
+              url: baseUrl +  objectName + 'getFisrtRandomCard/',
               params: {
                 parameters: {}
               }
@@ -135,14 +176,13 @@ angular.module('SimpleRESTIonic.services', [])
 
     })
 
-
-    .service('ColorsModel', function ($http, Backand) {
+    .service('ColorsModel', function ($http) {
         var service = this,
-            baseUrl = '/1/objects/',
-            objectName = 'colors/';
+            baseUrl = getBaseUrl(),
+            objectName = '/color/';
 
         function getUrl() {
-            return Backand.getApiUrl() + baseUrl + objectName;
+            return baseUrl + objectName;
         }
 
         function getUrlForId(id) {
@@ -152,14 +192,14 @@ angular.module('SimpleRESTIonic.services', [])
         service.getRandomColor = function(lastColor){
             return $http ({
               method: 'GET',
-              url: Backand.getApiUrl() + '/1/query/data/getRandomColor',
+              url: baseUrl +  objectName + 'random/',
               params: {
                 parameters: {
                   lastColor: lastColor
                 }
               }
             });
-        }
+        };
 
         service.all = function () {
             return $http.get(getUrl());
@@ -182,7 +222,8 @@ angular.module('SimpleRESTIonic.services', [])
         };
 
 
-    })
+    });
+/*
 
     .service('LoginService', function (Backand) {
         var service = this;
@@ -201,3 +242,4 @@ angular.module('SimpleRESTIonic.services', [])
             return Backand.signout();
         };
     });
+*/

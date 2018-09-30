@@ -1,25 +1,88 @@
 .dashboard-view{
-	background: $orange;
-	color: #FFF;
+	background: #f3f3f3;
+  color: #000;
 
-	.main-img{
-		width: 40%;
-	    display: block;
-	    margin: 0 auto;
-	    margin-top: 20px;
-	}
+  .padding {
+    padding: 0;
+    @include flexbox();
+    @include flex-justify(flex-start);
+    @include flex-align(flex-start);
+    .scroll {
+      width: 100%;
+      @include flexbox();
+      @include flex-justify(flex-start);
+      @include flex-align(flex-start);
+      @include flex-direction(column);
+    }
+  }
 
+  .intro {
+    position: relative;
+    width: 100%;
+    min-height: 100px;
+    background: url("../img/intro.png");
+    background-size: cover;
+    background-position: center center;
+    padding: 20px 25px;
+    @include flexbox();
+    @include flex-justify(flex-start);
+    @include flex-align(flex-end);
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+    }
+    &__title {
+      font-family: 'Patrick Hand', cursive;
+      text-align: left;
+      color: #ffffff;
+      font-size: 24px;
+      letter-spacing: 2px;
+      font-weight: 400;
+      z-index: 1;
+      margin: 0;
+    }
+    &__img {
+      display: none;
+      width: 90px;
+      background: #ffffff;
+      border-radius: 50%;
+      height: 90px;
+      @include flexbox();
+      @include flex-justify(flex-start);
+      @include flex-align(flex-end);
+      .main-img {
+        width: 60%;
+        display: block;
+        margin: 0 auto;
+        margin-top: 20px;
+      }
+    }
+  }
+  .content {
+    width: 100%;
+    padding: 20px;
+    padding-top: 30px;
+  }
 	.bar, .bar-subheader{
 		border: 0;
 		background: transparent;
 	}
 
-	.title{
-		text-align: center;
-	  text-transform: uppercase;
-	  color: #FFF;
+	.title {
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    color: #888;
+    font-size: 14px;
+    letter-spacing: 1px;
     font-weight: 300;
     margin-bottom: 20px;
+    padding-left: 10px;
+    text-transform: none
 	}
 
 	.top-bar{
@@ -34,68 +97,134 @@
 		}
 	}
 
-	.addPlayer{
-		margin-top: 10px;
+	.addPlayer {
+    display: block;
+		margin-top: 30px;
 		font-weight: 300;
-
+    .icon {
+      font-size: 14px;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 1px;
+      color: #888;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
 		i:before{
-			margin-right: 5px;
-		}
+      margin-right: 5px;
+      display: none;
+    }
+
 	}
 
-	.warning{
-		text-align: center;
-	    font-size: 18px;
+	.warning {
+      font-family: 'Roboto', sans-serif;
+		  text-align: left;
+      font-size: 14px;
+      letter-spacing: 1px;
 	    font-weight: 300;
-	    margin: 20px 0;
+      margin: 20px 0;
+      padding-left: 10px;
+      color: #888;
 	}
 
-	.card{
-		box-shadow: none;
-		i{
-			color: $orange;
+	.card {
+    box-shadow: none;
+    border-radius: 5px;
+    .item {
+      padding: 20px 15px;
+      position: relative;
+    }
+    .item-actions {
+      position: absolute;
+      right: 15px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      @include flexbox();
+      @include flex-align(center);
+    }
+		i {
+      color: #888;
+      position: relative;
+      right: auto;
+      left: auto;
+      font-size: 20px;
 		}
-		h2{
-			color: $orange;
-			font-size: 18px;
-			text-transform: uppercase;
+		h2 {
+      font-family: 'Roboto', sans-serif;
+      color: #888;
+      text-align: left;
+      text-transform: none;
+      font-weight: 300;
+      letter-spacing: 1px;
+      font-size: 14px;
 		}
 	}
 
-	.button-purple{
-		margin-top: 15px;
+	.button-purple {
+    @include trs(all 0.3s ease-in-out);
+    margin-top: 30px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #5a5553;
+    border: 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    border-radius: 5px;
+    &:hover, &:active {
+      background: #000000
+    }
 	}
 
 	//New Player
-	.creating-content{
+	.creating-content {
+    padding: 20px;
+    .scroll {
+      width: 100%;
+      > div {
+        width: 100%;
+      }
+    }
 
 		.title{
-			color: #FFF;
-		    font-size: 24px;
-		    text-transform: uppercase;
-		    text-align: center;
-    		margin-top: 50px;
+			font-family: 'Roboto', sans-serif;
+      text-align: left;
+      color: #888;
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-weight: 300;
+      margin-bottom: 20px;
+      text-transform: none;
+      margin-top: 40px;
+      margin-bottom: 30px;
+      padding: 0;
 		}
 
-		label{
+		label {
 			border: 0;
 			padding: 0;
-			span{
-				color: #FFF;
+			span {
+        font-family: 'Roboto', sans-serif;
+				color: #888;
 				margin-bottom: 10px;
 			}
 			input{
-				padding: 20px 10px;
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: 1px;
+        padding: 25px 15px;
+        border-radius: 5px;
 			}
 		}
 
 		.button{
-			background-color: $teal;
+      font-family: 'Roboto', sans-serif;
+      background-color: #5a5553;
 			border: 0;
-			font-size: 18px;
-		    text-transform: uppercase;
-		    letter-spacing: 1px;
-		    font-weight: 300;
+			font-size: 16px;
+      letter-spacing: 1px;
+      font-weight: 500;
+      border-radius: 5px;
 		}
 	}
 }

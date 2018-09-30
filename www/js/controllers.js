@@ -1,6 +1,6 @@
 angular.module('SimpleRESTIonic.controllers', [])
 
-    .controller('LoginCtrl', function (Backand, $state, $rootScope, LoginService) {
+    .controller('LoginCtrl', function ($state, $rootScope, LoginService) {
         var login = this;
 
         function signin() {
@@ -40,9 +40,9 @@ angular.module('SimpleRESTIonic.controllers', [])
     .controller('DashboardCtrl', function (ItemsModel, $rootScope) {
         var vm = this;
 
-        function goToBackand() {
-            window.location = 'http://docs.backand.com';
-        }
+        // function goToBackand() {
+        //     window.location = 'http://docs.backand.com';
+        // }
 
         function getAll() {
             ItemsModel.all()
@@ -114,7 +114,6 @@ angular.module('SimpleRESTIonic.controllers', [])
         vm.isCurrent = isCurrent;
         vm.cancelEditing = cancelEditing;
         vm.cancelCreate = cancelCreate;
-        vm.goToBackand = goToBackand;
         vm.isAuthorized = false;
 
         $rootScope.$on('authorized', function () {
