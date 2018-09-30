@@ -50,6 +50,19 @@ angular.module('SimpleRESTIonic.services', [])
             });
         };
 
+        service.getSecondRandomPlayer = function(player){
+            return $http ({
+                method: 'GET',
+                url: baseUrl +  objectName + 'getRandomPlayer/',
+                params: {
+                    parameters: {
+                        hash: getJSONLocal("userHash"),
+                        player: player
+                    }
+                }
+            });
+        };
+
         service.all = function () {
             return $http.get(getUrl());
         };
@@ -59,15 +72,46 @@ angular.module('SimpleRESTIonic.services', [])
         };
 
         service.create = function (object) {
-            return $http.post(baseUrl +  objectName + 'create.php', object);
+            console.log(object);
+            // return $http.post(baseUrl +  objectName + 'create.php', object);
+            return $http ({
+              method: 'GET',
+              url: baseUrl +  objectName + 'create/',
+              params: {
+                  parameters: {
+                      hash: object.hash,
+                      name: object.name
+                  }
+              }
+          });
         };
 
         service.update = function (id, object) {
-            return $http.put(getUrlForId(id), object);
+            // return $http.put(getUrlForId(id), object);
+            console.log(object);
+            return $http ({
+              method: 'GET',
+              url: baseUrl +  objectName + 'update/',
+              params: {
+                  parameters: {
+                      id: id,
+                      name: object.name
+                  }
+              }
+          });
         };
 
         service.delete = function (id) {
-            return $http.post(baseUrl +  objectName + 'delete.php', {'id': id});
+            // return $http.post(baseUrl +  objectName + 'delete.php', {'id': id});
+            return $http ({
+              method: 'GET',
+              url: baseUrl +  objectName + 'delete/',
+              params: {
+                  parameters: {
+                      id: id
+                  }
+              }
+          });
         };
 
     })

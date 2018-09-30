@@ -26,15 +26,21 @@ angular.module('SimpleRESTIonic', ['ionic', 'SimpleRESTIonic.services'])
                 return result;
             }
 
-            if(window.device){
-                var hash = window.device.uuid;
-                console.log(hash);
-                saveLocal("userHash", hash); 
-            }else{
-                //var hash = new Date().getTime() + randomString(20, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-                var hash = "111";
-                saveLocal("userHash", hash); 
+            var hash = '111';
+
+            if (ionic.Platform.device()) {
+              hash = ionic.Platform.device().uuid;
+            } else if (device) {
+              hash = device.uuid;
+            } else if (window.device) {
+              hash = window.device.uuid;
             }
+
+            if (hash == undefined) {
+              hash = '111';
+            }
+
+            saveLocal("userHash", hash);
         });
     })
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {

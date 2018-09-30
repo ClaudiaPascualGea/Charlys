@@ -10,6 +10,7 @@ controllers.GameCtrl = function (PlayersModel, CardsModel, ColorsModel, $rootSco
     vm.cardText = "";
     vm.cardTitle = "";
     vm.numberPlayers = 0;
+    vm.randorPlayer = '';
 
     function goBack(){
         vm.cards = [];
@@ -27,7 +28,7 @@ controllers.GameCtrl = function (PlayersModel, CardsModel, ColorsModel, $rootSco
                 aux += ",";
         }
 
-        aux += ")";         
+        aux += ")";
         return aux;
     }
 
@@ -35,26 +36,26 @@ controllers.GameCtrl = function (PlayersModel, CardsModel, ColorsModel, $rootSco
 
         vm.cardText = "";
         vm.cardTitle = "";
-        
+
         getRandomColor();
 
         if(vm.cards.length > 0){
             getCard()
         }else{
             getFirstCard();
-        }      
+        }
     }
 
     function getFirstCard(){
         CardsModel.getFirstCard()
         .then(function (result) {
-            if(result.data.length > 0){
+            if(result.data.length > 0) {
                 vm.card = result.data[0];
-                if(vm.card.text.indexOf("<player>") != -1)
+                if (vm.card.text.indexOf("<player>") !== -1) {
                     getRandomPlayer();
-                else{
-                    vm.cardText = vm.card.text;   
-                    vm.cardTitle = vm.card.title;             
+                } else{
+                    vm.cardText = vm.card.text;
+                    vm.cardTitle = vm.card.title;
                 }
                 vm.cards.push(vm.card);
             }else
@@ -66,13 +67,13 @@ controllers.GameCtrl = function (PlayersModel, CardsModel, ColorsModel, $rootSco
         var idCards = prepareCards();
 
         CardsModel.getCard(idCards)
-        .then(function (result) {            
-            if(result.data.length > 0){
-                vm.card = result.data[0];             
-                if(vm.card.text.indexOf("<player>") != -1)
+        .then(function (result) {
+            if(result.data.length > 0) {
+                vm.card = result.data[0];
+                if (vm.card.text.indexOf("<player>") !== -1) {
                     getRandomPlayer();
-                else{
-                    vm.cardText = vm.card.text; 
+                } else{
+                    vm.cardText = vm.card.text;
                     vm.cardTitle = vm.card.title;
                 }
 
@@ -87,19 +88,42 @@ controllers.GameCtrl = function (PlayersModel, CardsModel, ColorsModel, $rootSco
         PlayersModel.getRandomPlayer()
         .then(function (result) {
             if(result.data.length > 0){
-                var find = '<player>';
-                var re = new RegExp(find, 'g');
-                vm.cardText = vm.card.text.replace(re, result.data[0].name);
-                vm.cardTitle = vm.card.title;
+                if (vm.card.text.indexOf("<player2>") !== -1) {
+                    getSecondRandomPlayer(result.data[0]);
+                } else {
+                    const find = '<player>';
+                    const re = new RegExp(find, 'g');
+                    vm.cardText = vm.card.text.replace(re, result.data[0].name);
+                    vm.cardTitle = vm.card.title;
+                }
             }
             else
                console.log("Error");
         });
     }
 
+    function getSecondRandomPlayer(pl){
+        PlayersModel.getSecondRandomPlayer(pl.id)
+            .then(function (result) {
+                if(result.data.length > 0){
+                    const find = '<player2>';
+                    const find2 = '<player>';
+                    const re = new RegExp(find, 'g');
+                    const re2 = new RegExp(find2, 'g');
+                    var text = vm.card.text;
+                    text = text.replace(re, result.data[0].name);
+                    text = text.replace(re2, pl.name);
+                    vm.cardText = text;
+                    vm.cardTitle = vm.card.title;
+                }
+                else
+                    console.log("Error");
+            });
+    }
+
     function getRandomColor(){
         ColorsModel.getRandomColor(vm.lastColor)
-        .then(function (result) {            
+        .then(function (result) {
             if(result.data.length > 0){
                 vm.lastColor = result.data[0].id;
                 vm.color = result.data[0].code;
