@@ -1,0 +1,12 @@
+ionic cordova build --release android
+
+// Solo si queremos clave nueva
+keytool -genkey -v -keystore charlys20181230.keystore -alias charlys20181230 -keyalg RSA -keysize 2048 -validity 10000
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore  charlys20181230.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk charlys20181230
+
+// 231294.cpg
+
+C:/Users/Claudia/AppData/Local/Android/Sdk/build-tools/28.0.3/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk charlys20181230.apk
+
+// Si falla, eliminar de la papelera de aplicaciones

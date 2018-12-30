@@ -77,6 +77,28 @@ controllers.DashboardCtrl = function (PlayersModel, $rootScope, $ionicViewSwitch
         $rootScope.go("app.game");
     }
 
+    function toggleClass(item) {
+        const elements = document.querySelectorAll('.dashboard__list .card .item');
+        for (let i = 0; i < elements.length; i++ ) {
+            elements[i].classList.remove('is-active');
+        }
+        const element = elements[item.$index];
+        console.log(element);
+        element.classList.add('is-active');
+    }
+
+    window.onload = function(){
+        document.onclick = function(e) {
+            console.log(e.target.className);
+            if(e.target.className !== 'card-title' && e.target.className !== 'card-title__text text-center ng-binding' && e.target.className !== 'icon ion-trash-b activated'){
+                const elements = document.querySelectorAll('.dashboard__list .card .item');
+                for (let i = 0; i < elements.length; i++ ) {
+                    elements[i].classList.remove('is-active');
+                }
+            }
+        };
+    };
+
     vm.objects = [];
     vm.edited = null;
     vm.isEditing = false;
@@ -91,10 +113,10 @@ controllers.DashboardCtrl = function (PlayersModel, $rootScope, $ionicViewSwitch
     vm.cancelCreate = cancelCreate;
     vm.play = play;
     vm.isAuthorized = false;
+    vm.toggleClass = toggleClass;
 
     $rootScope.$on('authorized', function () {
         vm.isAuthorized = true;
-        //getAll();
     });
 
     $rootScope.$on('logout', function () {

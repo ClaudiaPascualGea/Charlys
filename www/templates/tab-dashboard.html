@@ -7,30 +7,37 @@
           <div class="content">
             <!-- LIST -->
             <h2 class="title">Jugadores</h2>
-              <div class="list card" ng-repeat="object in vm.data"
-                  ng-class="{'active':vm.isCurrent(object.id)}">
-                  <div class="item item-icon-right item-icon-left">
-                      <h2 class="text-center">{{object.name}}</h2>
-                      <div class="item-actions">
-                        <i class="ion-edit icon" ng-click="vm.setEdited(object)"></i>
-                        <i class="icon ion-trash-b" ng-click="vm.delete(object.id)"></i>
+              <div class="dashboard__list">
+                  <div class="list card" ng-repeat="object in vm.data"
+                      ng-class="{'active':vm.isCurrent(object.id)}">
+                      <div class="item item-icon-right item-icon-left" ng-click="vm.toggleClass(this)">
+                          <div class="card-title">
+                            <h2 class="card-title__text text-center">{{object.name}}</h2>
+                          </div>
+                          <div class="item-actions">
+                            <i class="ion-edit icon" ng-click="vm.setEdited(object)"></i>
+                            <i class="icon ion-trash-b" ng-click="vm.delete(object.id)"></i>
+                          </div>
                       </div>
                   </div>
+                  <span class="list card addPlayer">
+                      <div class="item item-icon-right item-icon-left" ng-click="vm.isCreating = true">
+                          <div class="card-title">
+                            <h2 class="card-title__text text-center">
+                                <i class='icon ion-plus-round new-item'></i>
+                            </h2>
+                          </div>
+                      </div>
+                  </span>
+                  <p class="warning" ng-if="vm.data.length<2">Añade al menos dos jugadores para empezar a jugar.</p>
               </div>
-
-              <p class="warning" ng-if="vm.data.length<2">Añade al menos dos jugadores para empezar a jugar.</p>
-
-              <div class="top-bar">
-                  <span class="addPlayer" ng-click="vm.isCreating = true"><i class='icon ion-plus-round new-item'>Añadir jugador</i></span>
-              </div>
-
-              <button ng-if="vm.data.length>=2" class="button button-block button-purple" ng-click="vm.play()">Jugar</button>
             </div>
         </ion-content>
     </div>
     <div ng-if="vm.isCreating">
         <ion-content class="padding creating-content">
             <!-- CREATING -->
+
             <div class="">
                 <h2 class="title">Crear Jugador</h2>
                 <span ng-click="vm.cancelCreate()" class="cancel-create">Cancelar</span>
@@ -71,6 +78,9 @@
                 </form>
             </div>
         </ion-content>
+    </div>
+    <div>
+        <button ng-if="vm.data.length>=2" class="button button-block button-purple" ng-click="vm.play()">Jugar</button>
     </div>
 </ion-view>
 
