@@ -17,14 +17,12 @@ navigation history that also transitions its views in and out.
 	</ion-tabs>
 </ion-view> -->
 
- <ion-tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive" class="tabs-item-hide">
+<ion-tabs tabs-style="tabs-icon-top" tabs-type="tabs-positive" class="tabs-item-hide">
+  <ion-tab href="#/dashboard">
+    <ion-nav-view name="dashboard-view"></ion-nav-view>
+  </ion-tab>
 
-        <ion-tab href="#/dashboard">
-          <ion-nav-view name="dashboard-view"></ion-nav-view>
-        </ion-tab>
-
-        <ion-tab href="#/game">
-          <ion-nav-view name="game-view"></ion-nav-view>
-        </ion-tab>
-
+  <ion-tab href="#/game">
+    <ion-nav-view name="game-view"></ion-nav-view>
+  </ion-tab>
 </ion-tabs>

@@ -1,17 +1,17 @@
 /* FLEXBOX */
 
 @mixin flexbox() {
-  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
   display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+  display: flex; /* NEW, Spec - Firefox, Chrome, Opera */
 }
 
 @mixin flex($args...) {
-  -webkit-box-flex: $args;   /* OLD - iOS 6-, Safari 3.1-6 */
-  -webkit-flex: $args;       /* Safari 6.1+. iOS 7.1+, BB10 */
-  -ms-flex: $args;           /* IE 10 */
-  flex: $args;               /* NEW, Spec - Firefox, Chrome, Opera */
+  -webkit-box-flex: $args; /* OLD - iOS 6-, Safari 3.1-6 */
+  -webkit-flex: $args; /* Safari 6.1+. iOS 7.1+, BB10 */
+  -ms-flex: $args; /* IE 10 */
+  flex: $args; /* NEW, Spec - Firefox, Chrome, Opera */
 }
 
 @mixin flex-direction($args) {
@@ -66,7 +66,8 @@
   -moz-justify-items: $args;
   -ms-justify-items: $args;
 }
-@mixin flex-wrap($args){
+
+@mixin flex-wrap($args) {
   -moz-flex-wrap: $args;
   -ms-flex-wrap: $args;
   -webkit-flex-wrap: $args;
@@ -75,11 +76,11 @@
 }
 
 @mixin inline-flex {
-display: -webkit-inline-box;
-display: -webkit-inline-flex;
-display: -moz-inline-flex;
-display: -ms-inline-flexbox;
-display: inline-flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 
@@ -93,12 +94,12 @@ display: inline-flex;
 // Helper mixin to build arrow with css.
 @mixin arrow($size, $direction, $color) {
   display: inline-block;
-  width  : 0;
-  height : 0;
+  width: 0;
+  height: 0;
 
   @if $direction == "up" or $direction == "down" {
     border-right: #{$size}px solid transparent;
-    border-left : #{$size}px solid transparent;
+    border-left: #{$size}px solid transparent;
 
     @if $direction == "up" {
       border-bottom: #{$size}px solid $color;
@@ -106,7 +107,7 @@ display: inline-flex;
       border-top: #{$size}px solid $color;
     }
   } @else if $direction == "left" or $direction == "right" {
-    border-top   : #{$size}px solid transparent;
+    border-top: #{$size}px solid transparent;
     border-bottom: #{$size}px solid transparent;
 
     @if $direction == "left" {
@@ -114,7 +115,7 @@ display: inline-flex;
     } @else {
       border-left: #{$size}px solid $color;
     }
-  } 
+  }
 }
 
 
@@ -175,11 +176,10 @@ display: inline-flex;
 
 @mixin trf( $args ) {
   -webkit-transform: $args;
-  -moz-transform: $args; 
-  -o-transform: $args; 
+  -moz-transform: $args;
+  -o-transform: $args;
   transform: $args;
 }
-
 
 
 @mixin bxsz($arg) {
@@ -196,7 +196,7 @@ display: inline-flex;
   $ie-hex-str: ie-hex-str($rgba);
   background-color: transparent;
   background-color: $rgba;
-  -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str})";
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str})";
   zoom: 1;
 }
 
@@ -214,10 +214,19 @@ display: inline-flex;
   background: $color;
   border: #{$border}px solid $bcolor;
   &:after, &:before {
-    @if $position == "top" { bottom: 100%; left: 50%; }
-    @else if $position == "right" { left: 100%; top: 50%; }
-    @else if $position == "left" { right: 100%; top: 50%; }
-    @else if $position == "bottom" { top: 100%; left: 50%; }
+    @if $position == "top" {
+      bottom: 100%;
+      left: 50%;
+    } @else if $position == "right" {
+      left: 100%;
+      top: 50%;
+    } @else if $position == "left" {
+      right: 100%;
+      top: 50%;
+    } @else if $position == "bottom" {
+      top: 100%;
+      left: 50%;
+    }
     border: solid transparent;
     content: " ";
     height: 0;
@@ -228,19 +237,37 @@ display: inline-flex;
   &:after {
     border-color: rgba(106, 60, 213, 0);
     border-width: #{$size}px;
-    @if $position == "top" { border-bottom-color: $color; margin-left: -#{$size}px; }
-    @else if $position == "right" { border-left-color: $color; margin-top: -#{$size}px; }
-    @else if $position == "left" { border-right-color: $color; margin-top: -#{$size}px; }
-    @else if $position == "bottom" { border-top-color: $color; margin-left: -#{$size}px; }
+    @if $position == "top" {
+      border-bottom-color: $color;
+      margin-left: -#{$size}px;
+    } @else if $position == "right" {
+      border-left-color: $color;
+      margin-top: -#{$size}px;
+    } @else if $position == "left" {
+      border-right-color: $color;
+      margin-top: -#{$size}px;
+    } @else if $position == "bottom" {
+      border-top-color: $color;
+      margin-left: -#{$size}px;
+    }
   }
   &:before {
     border-color: rgba(194, 225, 245, 0);
     $size6: $size + round($border*1.5);
     border-width: #{$size6}px;
-    @if $position == "top" { border-bottom-color: $bcolor; margin-left: -#{$size6}px; }
-    @else if $position == "right" { border-left-color: $bcolor; margin-top: -#{$size6}px; }
-    @else if $position == "left" { border-right-color: $bcolor; margin-top: -#{$size6}px; }
-    @else if $position == "bottom" { border-top-color: $bcolor; margin-left: -#{$size6}px; }
+    @if $position == "top" {
+      border-bottom-color: $bcolor;
+      margin-left: -#{$size6}px;
+    } @else if $position == "right" {
+      border-left-color: $bcolor;
+      margin-top: -#{$size6}px;
+    } @else if $position == "left" {
+      border-right-color: $bcolor;
+      margin-top: -#{$size6}px;
+    } @else if $position == "bottom" {
+      border-top-color: $bcolor;
+      margin-left: -#{$size6}px;
+    }
   }
 }
 
@@ -260,14 +287,24 @@ display: inline-flex;
     width: 100%;
     height: #{$alto}px;
     background-color: $color;
-    @include trs( all 0.5s ease );
+    @include trs(all 0.5s ease);
   }
 
-  .icon-top-line { top: 0; }
-  .icon-middle-line, .put-in-middle { top: #{$alto+$separacion}px; }
-  .icon-bottom-line { bottom: 0; }
-  .rotate-45deg { @include trf( rotate(45deg) ); }
-  .rotate-45deg-reverse { @include trf( rotate(-45deg) ); }
+  .icon-top-line {
+    top: 0;
+  }
+  .icon-middle-line, .put-in-middle {
+    top: #{$alto+$separacion}px;
+  }
+  .icon-bottom-line {
+    bottom: 0;
+  }
+  .rotate-45deg {
+    @include trf(rotate(45deg));
+  }
+  .rotate-45deg-reverse {
+    @include trf(rotate(-45deg));
+  }
 }
 
 @mixin container_max($max_width) {
@@ -280,15 +317,15 @@ display: inline-flex;
 @mixin cross($width,$color) {
   width: ($width)+px;
   height: ($width)+px;
-  background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%,  transparent 65%),
+  background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 35%, $color 35%, $color 65%, transparent 65%);
-  -webkit-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%,  transparent 65%),
+  -webkit-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 35%, $color 35%, $color 65%, transparent 65%);
-  -moz-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%,  transparent 65%),
+  -moz-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 35%, $color 35%, $color 65%, transparent 65%);
-  -o-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%,  transparent 65%),
+  -o-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 35%, $color 35%, $color 65%, transparent 65%);
-  -ms-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%,  transparent 65%),
+  -ms-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 35%, $color 35%, $color 65%, transparent 65%);
 }
 
@@ -302,7 +339,7 @@ display: inline-flex;
     width: ($width)+px;
     height: ($wide)+px;
     display: block;
-    position: absolute; 
+    position: absolute;
     background-color: $color;
   }
   &:before {
@@ -318,15 +355,15 @@ display: inline-flex;
 }
 
 @mixin line($width,$color) {
-  background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%,  transparent 65%),
+  background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 100%, $color 35%, $color 65%, transparent 65%);
-  -webkit-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%,  transparent 65%),
+  -webkit-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 35%, $color 35%, $color 65%, transparent 65%);
-  -moz-background: linear-gradient(to bottom, transparent 100%, $color 35%, $color 65%,  transparent 65%),
+  -moz-background: linear-gradient(to bottom, transparent 100%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 35%, $color 35%, $color 65%, transparent 65%);
-  -o-background: linear-gradient(to bottom, transparent 100%, $color 35%, $color 65%,  transparent 65%),
+  -o-background: linear-gradient(to bottom, transparent 100%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 35%, $color 35%, $color 65%, transparent 65%);
-  -ms-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%,  transparent 65%),
+  -ms-background: linear-gradient(to bottom, transparent 35%, $color 35%, $color 65%, transparent 65%),
   linear-gradient(to right, transparent 100%, $color 35%, $color 65%, transparent 65%);
 }
 
@@ -339,12 +376,12 @@ display: inline-flex;
 @mixin gradient_css($color1,$alpha1, $color2, $alpha2,$break, $endColorstr) {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+75,1+75,0+100 */
   background: -moz-linear-gradient(left, rgba($color1, $alpha1) 0%, rgba($color1, $alpha1) $break, rgba($color2, $alpha2) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba($color1, $alpha1)), color-stop($break,rgba($color1, $alpha1)), color-stop(100%,rgba($color2, $alpha2))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, rgba($color1, $alpha1) 0%,rgba($color1, $alpha1) $break,rgba($color2, $alpha2) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, rgba($color1, $alpha1) 0%,rgba($color1, $alpha1) $break,rgba($color2, $alpha2) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, rgba($color1, $alpha1) 0%,rgba($color1, $alpha1) $break,rgba($color2, $alpha2) 100%); /* IE10+ */
-  background: linear-gradient(to right, rgba($color1, $alpha1) 0%,rgba($color1, $alpha1) $break,rgba($color2, $alpha2) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color1, endColorstr=$endColorstr,GradientType=1 ); /* IE6-9 */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba($color1, $alpha1)), color-stop($break, rgba($color1, $alpha1)), color-stop(100%, rgba($color2, $alpha2))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, rgba($color1, $alpha1) 0%, rgba($color1, $alpha1) $break, rgba($color2, $alpha2) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, rgba($color1, $alpha1) 0%, rgba($color1, $alpha1) $break, rgba($color2, $alpha2) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, rgba($color1, $alpha1) 0%, rgba($color1, $alpha1) $break, rgba($color2, $alpha2) 100%); /* IE10+ */
+  background: linear-gradient(to right, rgba($color1, $alpha1) 0%, rgba($color1, $alpha1) $break, rgba($color2, $alpha2) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$color1, endColorstr=$endColorstr, GradientType=1); /* IE6-9 */
 }
 
 
@@ -364,31 +401,30 @@ display: inline-flex;
 }*/
 
 
-
-@mixin make-cells-dim($max-width , $list){
-  $percent-list : walk($list, percent,$max-width);
+@mixin make-cells-dim($max-width , $list) {
+  $percent-list: walk($list, percent, $max-width);
   @each $percent in $percent-list {
-    $i : index($percent-list, $percent);
-    &:nth-child(#{$i}){ 
+    $i: index($percent-list, $percent);
+    &:nth-child(#{$i}) {
       width: $percent;
     }
   }
 }
 
-@mixin calc($property, $expression) { 
-  #{$property}: -webkit-calc(#{$expression}); 
-  #{$property}: calc(#{$expression}); 
-} 
-
-
-@mixin wrapper($padding,$margin-top){
-  margin: ($margin-top)+px auto;
-  $expresion: "100% - "+($padding);
-  @include calc(width,$expresion);
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
 }
 
-@mixin rotate($grados){
-  transform:rotate($grados);
+
+@mixin wrapper($padding,$margin-top) {
+  margin: ($margin-top)+px auto;
+  $expresion: "100% - "+($padding);
+  @include calc(width, $expresion);
+}
+
+@mixin rotate($grados) {
+  transform: rotate($grados);
   /* Safari */
   -webkit-transform: rotate(#{$grados});
   /* Firefox */
@@ -414,7 +450,7 @@ display: inline-flex;
 
 /// @alias element
 @mixin e($element) {
-  @include element($element)  {
+  @include element($element) {
     @content;
   }
 }
@@ -426,7 +462,7 @@ display: inline-flex;
   }
 }
 
-@mixin columnsText($params){
+@mixin columnsText($params) {
   -o-columns: #{$params};
   -webkit-columns: #{$params};
   -moz-columns: #{$params};
@@ -435,7 +471,7 @@ display: inline-flex;
 }
 
 
-@mixin columnsTextGap($params){
+@mixin columnsTextGap($params) {
   -o-column-gap: #{$params};
   -webkit-column-gap: #{$params};
   -moz-column-gap: #{$params};
@@ -444,7 +480,7 @@ display: inline-flex;
 }
 
 
-@mixin columnsTextRule($params){
+@mixin columnsTextRule($params) {
   -o-column-rule: #{$params};
   -webkit-column-rule: #{$params};
   -moz-column-rule: #{$params};

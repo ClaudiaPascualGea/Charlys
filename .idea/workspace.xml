@@ -5,29 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3f338a8-e178-4dd7-9039-0aed3374bf9b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/charlys20181230.apk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charlys20181230.keystore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commands.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/www/img/intro.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/img/intro.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/img/intro2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bower.json" beforeDir="false" afterPath="$PROJECT_DIR$/bower.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charlie.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/charlys.keystore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/charlys.keystore.old" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/charlys20181230.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/charlys20181230.keystore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-release-key.keystore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prepros.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/.idea/backand-ionic-starter.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/controllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/controllers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/js/controllers/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/controllers/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/controllers/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/controllers/game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/services.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/js/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/www/js/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/scss/config/_functions.scss" beforeDir="false" afterPath="$PROJECT_DIR$/www/scss/config/_functions.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/scss/config/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/www/scss/config/_variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/scss/modules/_dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/www/scss/modules/_dashboard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/scss/modules/_game.scss" beforeDir="false" afterPath="$PROJECT_DIR$/www/scss/modules/_game.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/www/scss/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/templates/tab-dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/templates/tab-dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/templates/tab-game.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/templates/tab-game.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/templates/tab-login.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/templates/tab-login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/templates/tabs.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/templates/tabs.html" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -107,11 +126,15 @@
     </gulpfiles>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
+  <component name="ProjectId" id="1rpkADuPKBiSA8Pe5Fc7LaV5yLx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -132,24 +155,22 @@
       </pane>
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -163,6 +184,7 @@
       <workItem from="1533566576085" duration="10089000" />
       <workItem from="1533742548542" duration="5166000" />
       <workItem from="1546176575933" duration="8444000" />
+      <workItem from="1619680274138" duration="775000" />
     </task>
     <task id="LOCAL-00001" summary="Style change">
       <created>1533566629568</created>
@@ -233,20 +255,12 @@
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Style change" />
     <MESSAGE value="Custom backend" />
     <option name="LAST_COMMIT_MESSAGE" value="Custom backend" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/www/js/controllers/game.js">

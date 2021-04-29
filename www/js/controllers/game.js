@@ -1,161 +1,154 @@
 controllers.GameCtrl = function (PlayersModel, CardsModel, ColorsModel, $rootScope, $scope, $ionicPopup) {
+  const vm = this;
 
-    var vm = this;
+  vm.players = [];
+  vm.cards = [];
+  vm.card = [];
+  vm.color = "#FFF";
+  vm.lastColor = "1";
+  vm.cardText = "";
+  vm.cardTitle = "";
+  vm.numberPlayers = 0;
+  vm.randorPlayer = '';
 
-    vm.players = [];
+  function goBack() {
     vm.cards = [];
     vm.card = [];
+    vm.cardText = "";
     vm.color = "#FFF";
-    vm.lastColor = "1";
+    $rootScope.go("app.dashboard", {'navTransition': 'android', 'navDirection': 'forward'});
+  }
+
+  function prepareCards() {
+    let aux = "(";
+    for (let i = 0; i < vm.cards.length; i++) {
+      aux += vm.cards[i].id;
+      if (vm.cards[i + 1])
+        aux += ",";
+    }
+
+    aux += ")";
+    return aux;
+  }
+
+  function getNextCard() {
     vm.cardText = "";
     vm.cardTitle = "";
-    vm.numberPlayers = 0;
-    vm.randorPlayer = '';
 
-    function goBack(){
-        vm.cards = [];
-        vm.card = [];
-        vm.cardText = "";
-        vm.color = "#FFF";
-        $rootScope.go("app.dashboard", {'navTransition':'android', 'navDirection':'forward'});
-    };
+    getRandomColor();
 
-    function prepareCards(){
-        var aux = "(";
-        for(var i=0; i<vm.cards.length; i++){
-            aux += vm.cards[i].id;
-            if(vm.cards[i+1])
-                aux += ",";
-        }
-
-        aux += ")";
-        return aux;
+    if (vm.cards.length > 0) {
+      getCard()
+    } else {
+      getFirstCard();
     }
+  }
 
-    function getNextCard(){
+  function getFirstCard() {
+    CardsModel.getFirstCard()
+      .then(function (result) {
+        if (result.data.length > 0) {
+          vm.card = result.data[0];
+          if (vm.card.text.indexOf("<player>") !== -1) {
+            getRandomPlayer();
+          } else {
+            vm.cardText = vm.card.text;
+            vm.cardTitle = vm.card.title;
+          }
+          vm.cards.push(vm.card);
+        } else
+          alert("No hay más tarjetas");
+      });
+  }
 
-        vm.cardText = "";
-        vm.cardTitle = "";
+  function getCard() {
+    const idCards = prepareCards();
 
-        getRandomColor();
+    CardsModel.getCard(idCards)
+      .then(function (result) {
+        if (result.data.length > 0) {
+          vm.card = result.data[0];
+          if (vm.card.text.indexOf("<player>") !== -1) {
+            getRandomPlayer();
+          } else {
+            vm.cardText = vm.card.text;
+            vm.cardTitle = vm.card.title;
+          }
 
-        if(vm.cards.length > 0){
-            getCard()
-        }else{
-            getFirstCard();
-        }
-    }
+          vm.cards.push(vm.card);
+        } else
+          $scope.showAlert();
+      });
+  }
 
-    function getFirstCard(){
-        CardsModel.getFirstCard()
-        .then(function (result) {
-            if(result.data.length > 0) {
-                vm.card = result.data[0];
-                if (vm.card.text.indexOf("<player>") !== -1) {
-                    getRandomPlayer();
-                } else{
-                    vm.cardText = vm.card.text;
-                    vm.cardTitle = vm.card.title;
-                }
-                vm.cards.push(vm.card);
-            }else
-                alert("No hay más tarjetas");
-        });
-    }
+  function getRandomPlayer() {
+    PlayersModel.getRandomPlayer()
+      .then(function (result) {
+        if (result.data.length > 0) {
+          if (vm.card.text.indexOf("<player2>") !== -1) {
+            getSecondRandomPlayer(result.data[0]);
+          } else {
+            const find = '<player>';
+            const re = new RegExp(find, 'g');
+            vm.cardText = vm.card.text.replace(re, result.data[0].name);
+            vm.cardTitle = vm.card.title;
+          }
+        } else
+          console.log("Error");
+      });
+  }
 
-    function getCard(){
-        var idCards = prepareCards();
+  function getSecondRandomPlayer(pl) {
+    PlayersModel.getSecondRandomPlayer(pl.id)
+      .then(function (result) {
+        if (result.data.length > 0) {
+          const find = '<player2>';
+          const find2 = '<player>';
+          const re = new RegExp(find, 'g');
+          const re2 = new RegExp(find2, 'g');
+          let text = vm.card.text;
+          text = text.replace(re, result.data[0].name);
+          text = text.replace(re2, pl.name);
+          vm.cardText = text;
+          vm.cardTitle = vm.card.title;
+        } else
+          console.log("Error");
+      });
+  }
 
-        CardsModel.getCard(idCards)
-        .then(function (result) {
-            if(result.data.length > 0) {
-                vm.card = result.data[0];
-                if (vm.card.text.indexOf("<player>") !== -1) {
-                    getRandomPlayer();
-                } else{
-                    vm.cardText = vm.card.text;
-                    vm.cardTitle = vm.card.title;
-                }
+  function getRandomColor() {
+    ColorsModel.getRandomColor(vm.lastColor)
+      .then(function (result) {
+        if (result.data.length > 0) {
+          vm.lastColor = result.data[0].id;
+          vm.color = result.data[0].code;
+        } else
+          console.log("Error");
+      });
+  }
 
-                vm.cards.push(vm.card);
-            }
-            else
-               $scope.showAlert();
-        });
-    }
+  $scope.$on("$ionicView.enter", function (event, data) {
+    getNextCard();
+  });
 
-    function getRandomPlayer(){
-        PlayersModel.getRandomPlayer()
-        .then(function (result) {
-            if(result.data.length > 0){
-                if (vm.card.text.indexOf("<player2>") !== -1) {
-                    getSecondRandomPlayer(result.data[0]);
-                } else {
-                    const find = '<player>';
-                    const re = new RegExp(find, 'g');
-                    vm.cardText = vm.card.text.replace(re, result.data[0].name);
-                    vm.cardTitle = vm.card.title;
-                }
-            }
-            else
-               console.log("Error");
-        });
-    }
+  //functions
+  vm.goBack = goBack;
+  vm.getNextCard = getNextCard;
 
-    function getSecondRandomPlayer(pl){
-        PlayersModel.getSecondRandomPlayer(pl.id)
-            .then(function (result) {
-                if(result.data.length > 0){
-                    const find = '<player2>';
-                    const find2 = '<player>';
-                    const re = new RegExp(find, 'g');
-                    const re2 = new RegExp(find2, 'g');
-                    var text = vm.card.text;
-                    text = text.replace(re, result.data[0].name);
-                    text = text.replace(re2, pl.name);
-                    vm.cardText = text;
-                    vm.cardTitle = vm.card.title;
-                }
-                else
-                    console.log("Error");
-            });
-    }
 
-    function getRandomColor(){
-        ColorsModel.getRandomColor(vm.lastColor)
-        .then(function (result) {
-            if(result.data.length > 0){
-                vm.lastColor = result.data[0].id;
-                vm.color = result.data[0].code;
-            }
-            else
-               console.log("Error");
-        });
-    }
-
-    $scope.$on("$ionicView.enter", function(event, data){
-       getNextCard();
+  // An alert dialog
+  $scope.showAlert = function () {
+    const alertPopup = $ionicPopup.alert({
+      title: '¡Ups! El juego ha terminado',
+      template: 'Creo que alguien ya ha bedido lo suficiente :D'
     });
 
-    //functions
-    vm.goBack = goBack;
-    vm.getNextCard = getNextCard;
-
-
-    // An alert dialog
-    $scope.showAlert = function() {
-        var alertPopup = $ionicPopup.alert({
-            title: '¡Ups! El juego ha terminado',
-            template: 'Creo que alguien ya ha bedido lo suficiente :D'
-        });
-
-        alertPopup.then(function(res) {
-            vm.cards = [];
-            vm.card = [];
-            vm.cardText = "";
-            vm.color = "#FFF";
-            $rootScope.go("app.dashboard", {'navTransition':'android', 'navDirection':'forward'});
-        });
-    };
-
+    alertPopup.then(function (res) {
+      vm.cards = [];
+      vm.card = [];
+      vm.cardText = "";
+      vm.color = "#FFF";
+      $rootScope.go("app.dashboard", {'navTransition': 'android', 'navDirection': 'forward'});
+    });
+  };
 }

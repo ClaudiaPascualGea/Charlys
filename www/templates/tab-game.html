@@ -1,15 +1,15 @@
 <ion-view class="game-view" hide-nav-bar="true">
-  	
-    <ion-content class="content-game" style="background-color: {{vm.color}}">
-		
-		<div class="card-container" on-tap="vm.getNextCard()">
-			<i class="ion-close-round close" ng-click="vm.goBack()"></i>
-			
-			<h2 class="title" ng-if="vm.cardTitle != ''">{{vm.cardTitle}}</h2>
-			<p class="text" ng-if="vm.cardTitle != ''">{{vm.cardText}}</p>
-		</div>
 
-    </ion-content>
-   
+  <ion-content class="content-game" style="background-color: {{vm.color}}">
+
+    <div class="card-container" on-tap="vm.getNextCard()">
+      <i class="ion-close-round close" ng-click="vm.goBack()"></i>
+
+      <h2 class="title" ng-if="vm.cardTitle != ''">{{vm.cardTitle}}</h2>
+      <p class="text" ng-if="vm.cardTitle != ''">{{vm.cardText}}</p>
+    </div>
+
+  </ion-content>
+
 </ion-view>
 

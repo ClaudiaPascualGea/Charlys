@@ -1,41 +1,41 @@
-.game-view{
+.game-view {
 
-	.content-game{
-		@include trs(background-color 0.5s ease-in-out);
-	}
+  .content-game {
+    @include trs(background-color 0.5s ease-in-out);
+  }
 
-	.scroll, .card-container{
-		width: 100%;
-		height: 100%;
-	}
+  .scroll, .card-container {
+    width: 100%;
+    height: 100%;
+  }
 
-	.close{
-		color: #FFF;
-		font-size: 25px;
-		position: absolute;
-		top: 40px;
+  .close {
+    color: #ffffff;
+    font-size: 25px;
+    position: absolute;
+    top: 40px;
     right: 20px;
-	}
+  }
 
-	.card-container{
-		@include flexbox();
-		@include flex-align(center);
-		@include flex-direction(column);
-		@include flex-justify(center);
+  .card-container {
+    @include flexbox();
+    @include flex-align(center);
+    @include flex-direction(column);
+    @include flex-justify(center);
 
-		.title{
-			font-family: 'Patrick Hand', cursive;
-			color: #FFF;
+    .title {
+      font-family: 'Patrick Hand', cursive;
+      color: #FFF;
       font-size: 40px;
-		}
+    }
 
-		.text{
-			color: #FFF;
+    .text {
+      color: #FFF;
       text-align: center;
       font-size: 25px;
       line-height: 30px;
       font-weight: 300;
       padding: 20px;
-		}
-	}
+    }
+  }
 }

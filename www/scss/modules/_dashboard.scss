@@ -1,12 +1,13 @@
-.dashboard-view{
-	background: #f3f3f3;
-  color: #000;
+.dashboard-view {
+  background: #f3f3f3;
+  color: #000000;
 
   .padding {
     padding: 0;
     @include flexbox();
     @include flex-justify(flex-start);
     @include flex-align(flex-start);
+
     .scroll {
       width: 100%;
       @include flexbox();
@@ -25,6 +26,7 @@
     min-height: 30px;
     padding: 15px 30px;
     background: transparent;
+
     &__title {
       display: none;
       text-align: left;
@@ -35,6 +37,7 @@
       z-index: 1;
       margin: 0;
     }
+
     &__img {
       display: none;
       width: 90px;
@@ -44,6 +47,7 @@
       @include flexbox();
       @include flex-justify(flex-start);
       @include flex-align(flex-end);
+
       .main-img {
         width: 60%;
         display: block;
@@ -52,17 +56,19 @@
       }
     }
   }
+
   .content {
     width: 100%;
     padding: 20px;
     padding-top: 30px;
   }
-	.bar, .bar-subheader{
-		border: 0;
-		background: transparent;
-	}
 
-	.title {
+  .bar, .bar-subheader {
+    border: 0;
+    background: transparent;
+  }
+
+  .title {
     font-family: 'Roboto', sans-serif;
     text-align: left;
     color: #888;
@@ -72,170 +78,181 @@
     margin-bottom: 20px;
     padding-left: 10px;
     text-transform: none
-	}
+  }
 
-	.top-bar{
-		display: block;
-		position: relative;
-		text-align: right;
+  .top-bar {
+    display: block;
+    position: relative;
+    text-align: right;
 
-		.icon.new-item{
-			position: relative;
-			right: auto;
-			bottom: auto;
-		}
-	}
+    .icon.new-item {
+      position: relative;
+      right: auto;
+      bottom: auto;
+    }
+  }
 
-	.addPlayer {
-      .icon {
-        color: #FFFFFF;
-        font-size: 28px;
-        display: inline-block;
-      }
-	}
+  .addPlayer {
+    .icon {
+      color: #FFFFFF;
+      font-size: 28px;
+      display: inline-block;
+    }
+  }
 
-	.warning {
-      font-family: Roboto,sans-serif;
-      text-align: center;
-      font-size: 12px;
-      letter-spacing: 1px;
-      margin: 20px 0;
-      color: #FFF;
-      background: #f44336;
-      text-transform: uppercase;
-      line-height: 140%;
-      font-weight: 400;
-      padding: 10px;
-      border-radius: 5px;
-	}
+  .warning {
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin: 20px 0;
+    color: #FFF;
+    background: #f44336;
+    text-transform: uppercase;
+    line-height: 140%;
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 5px;
+  }
 
-    .dashboard {
-      &__list {
-        @include flexbox();
-        @include flex-wrap(wrap);
-        padding-bottom: 40px;
-      }
+  .dashboard {
+    &__list {
+      @include flexbox();
+      @include flex-wrap(wrap);
+      padding-bottom: 40px;
+    }
+  }
+
+  .list:last-child.card {
+    margin: 0;
+  }
+
+  .card {
+    width: calc(33.33% - 13.33px);
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+    &:nth-child(3n + 3) {
+      margin-right: 0;
     }
 
-    .list:last-child.card {
-      margin: 0;
+    $colors-list: #f44336 #e91e63 #9c27b0 #673ab7 #3f51b5 #2196f3 #03a9f4 #00bcd4 #009688 #8bc34a #cddc39 #ffc107 #ff9800 #ff5722 #795548 #9e9e9e #607d8b;
+    $count: 17;
+    @each $current-color in $colors-list {
+      $i: index($colors-list, $current-color);
+      &:nth-child(#{$i}), &:nth-child(#{$i + $count}),
+    , &:nth-child(#{$i + $count * 2}) {
+      .card-title {
+        background: $current-color;
+      }
+      .item-actions {
+        background: $current-color;
+      }
+    }
     }
 
-	.card {
-      width: calc(33.33% - 13.33px);
-      box-shadow: none;
+    .item {
+      position: relative;
       background: transparent;
       padding: 0;
       margin: 0;
-      margin-right: 20px;
-      margin-bottom: 20px;
-      &:nth-child(3n + 3) {
-        margin-right: 0;
-      }
 
-      $colors-list: #f44336 #e91e63 #9c27b0 #673ab7 #3f51b5 #2196f3 #03a9f4 #00bcd4 #009688 #8bc34a #cddc39 #ffc107 #ff9800 #ff5722 #795548 #9e9e9e #607d8b;
-      $count: 17;
-      @each $current-color in $colors-list {
-        $i: index($colors-list, $current-color);
-        &:nth-child(#{$i}), &:nth-child(#{$i + $count}), , &:nth-child(#{$i + $count * 2}) {
-          .card-title {
-            background: $current-color;
-          }
-          .item-actions {
-            background: $current-color;
-          }
+      &.is-active {
+        .item-actions {
+          @include trf(scale(1));
         }
       }
+    }
 
-      .item {
-        position: relative;
-        background: transparent;
-        padding: 0;
-        margin: 0;
-        &.is-active {
-          .item-actions {
-            @include trf(scale(1));
-          }
-        }
-      }
-      .card-title {
-        background: #FFFFFF;
+    .card-title {
+      background: #FFFFFF;
+      text-align: center;
+      height: 0;
+      padding-bottom: 100%;
+      border-radius: 50%;
+      position: relative;
+
+      &__text {
+        font-family: 'Roboto', sans-serif;
+        color: #FFFFFF;
         text-align: center;
-        height: 0;
-        padding-bottom: 100%;
-        border-radius: 50%;
-        position: relative;
-        &__text {
-          font-family: 'Roboto', sans-serif;
-          color: #FFFFFF;
-          text-align: center;
-          font-weight: 300;
-          letter-spacing: 1px;
-          font-size: 12px;
-          position: absolute;
-          top: 50%;
-          width: 100%;
-          text-transform: uppercase;
-          @include trf(translateY(-50%));
-        }
-      }
-      .item-actions {
-        @include flexbox();
-        @include flex-align(center);
-        @include flex-justify(center);
+        font-weight: 300;
+        letter-spacing: 1px;
+        font-size: 12px;
         position: absolute;
+        top: 50%;
         width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        border-radius: 50%;
-        overflow: hidden;
-        @include trf(all 0.3s ease-in-out);
-        @include trf(scale(0));
+        text-transform: uppercase;
+        @include trf(translateY(-50%));
       }
-      i {
-        color: #fff;
-        position: relative;
-        right: auto;
-        left: auto;
-        font-size: 20px;
-      }
-	}
+    }
 
-	.button-purple {
-      @include trs(all 0.3s ease-in-out);
-      font-family: 'Roboto', sans-serif;
-      border: 0;
-      font-size: 16px;
-      letter-spacing: 1px;
-      font-weight: 500;
-      position: fixed;
+    .item-actions {
+      @include flexbox();
+      @include flex-align(center);
+      @include flex-justify(center);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
       left: 0;
-      bottom: 0;
-      margin: 0;
-      background: #ff5722;
-      border-radius: 0;
-      padding: 10px 0;
-      &:hover, &:active {
-        background: #000000
-      }
-	}
+      border-radius: 50%;
+      overflow: hidden;
+      @include trf(all 0.3s ease-in-out);
+      @include trf(scale(0));
+    }
 
-	//New Player
-	.creating-content {
-      padding: 20px;
-      padding-top: 50px;
-      .scroll {
+    i {
+      color: #fff;
+      position: relative;
+      right: auto;
+      left: auto;
+      font-size: 20px;
+    }
+  }
+
+  .button-purple {
+    @include trs(all 0.3s ease-in-out);
+    font-family: 'Roboto', sans-serif;
+    border: 0;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    background: #ff5722;
+    border-radius: 0;
+    padding: 10px 0;
+
+    &:hover, &:active {
+      background: #000000
+    }
+  }
+
+  //New Player
+  .creating-content {
+    padding: 20px;
+    padding-top: 50px;
+
+    .scroll {
+      width: 100%;
+
+      > div {
         width: 100%;
-        > div {
-          width: 100%;
-        }
       }
+    }
 
     .cancel-create {
       top: 0;
     }
-    .title{
+
+    .title {
       font-family: 'Roboto', sans-serif;
       text-align: left;
       color: #888;
@@ -251,12 +268,14 @@
     label {
       border: 0;
       padding: 0;
+
       span {
         font-family: 'Roboto', sans-serif;
         color: #888;
         margin-bottom: 10px;
       }
-      input{
+
+      input {
         font-family: 'Roboto', sans-serif;
         letter-spacing: 1px;
         padding: 25px 15px;
@@ -264,7 +283,7 @@
       }
     }
 
-    .button{
+    .button {
       font-family: 'Roboto', sans-serif;
       background-color: #e91e63;
       border: 0;
